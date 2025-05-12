@@ -47,7 +47,7 @@ public class AiShootingScript : MonoBehaviour
                 lastBullet = Instantiate(bullet, this.transform.position, this.transform.rotation);
                 lastBullet.GetComponent<BulletScript>().moveSpeed = 50f;
                 lastBullet.GetComponent<BulletScript>().damage = 1f;
-                lastBullet.GetComponent<BulletScript>().ignore = "Enemy";
+                lastBullet.GetComponent<BoxCollider>().excludeLayers = 7;
             }
         }
     }

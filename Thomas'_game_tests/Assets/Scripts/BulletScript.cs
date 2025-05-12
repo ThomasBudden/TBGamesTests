@@ -24,14 +24,14 @@ public class BulletScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.GetComponent<HealthManager>() != null && collision.gameObject.tag != ignore)
+        if (other.gameObject.tag != ignore && other.gameObject.GetComponent<HealthManager>() != null)
         {
-            collision.gameObject.GetComponent<HealthManager>().health = collision.gameObject.GetComponent<HealthManager>().health - damage;
+            other.gameObject.GetComponent<HealthManager>().health = other.gameObject.GetComponent<HealthManager>().health - damage;
             Destroy(this.gameObject);
         }
-        else if (collision.gameObject.tag != ignore)
+        else if (other.gameObject.tag != ignore)
         {
             Destroy(this.gameObject);
         }

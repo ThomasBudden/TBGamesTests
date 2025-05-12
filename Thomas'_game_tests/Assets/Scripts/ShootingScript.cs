@@ -38,7 +38,7 @@ public class ShootingScript : MonoBehaviour
             lastBullet = Instantiate(proj, this.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.position, currentRotation);
             lastBullet.GetComponent<BulletScript>().moveSpeed = 150;
             lastBullet.GetComponent<BulletScript>().damage = 1;
-            lastBullet.GetComponent<BulletScript>().ignore = "Player";
+            lastBullet.GetComponent<BoxCollider>().excludeLayers = 6;
         }
     }
 }

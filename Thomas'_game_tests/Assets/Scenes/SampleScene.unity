@@ -837,7 +837,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5371646035256371106, guid: 4b831d7b02373a84aaa164a85686a6a8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5371646035256371106, guid: 4b831d7b02373a84aaa164a85686a6a8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1325,7 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff34fd001afe7c4ca29e3424598eb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 1
 --- !u!1 &2089356920
 GameObject:
   m_ObjectHideFlags: 0

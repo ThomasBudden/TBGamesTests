@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 1166895694226370566}
   - component: {fileID: 8541807098192671368}
   - component: {fileID: 124793492667379672}
-  - component: {fileID: 5371646035256371106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -84,29 +83,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
---- !u!136 &5371646035256371106
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3439357468677119390}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.55
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4067671811751115666
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +94,7 @@ GameObject:
   - component: {fileID: 1999134487807520852}
   - component: {fileID: 2954722168926581105}
   - component: {fileID: 131098896525487358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyAim
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -202,7 +178,7 @@ GameObject:
   - component: {fileID: 8466219388142264127}
   - component: {fileID: 150210204696395131}
   - component: {fileID: 1063402242735241458}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyBody
   m_TagString: Enemy
   m_Icon: {fileID: 0}
