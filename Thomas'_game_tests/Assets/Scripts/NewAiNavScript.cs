@@ -9,7 +9,6 @@ public class NewAiNavScript : MonoBehaviour
     public int stoppingDistance;
     private GameObject body;
     private NavMeshAgent agent;
-    public int hitPoints;
     // Start is called before the first frame update
     void Start()
     {

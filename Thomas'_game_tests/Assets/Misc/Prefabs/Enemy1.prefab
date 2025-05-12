@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 3299289006152764625}
   - component: {fileID: 1166895694226370566}
   - component: {fileID: 8541807098192671368}
+  - component: {fileID: 124793492667379672}
+  - component: {fileID: 5371646035256371106}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +71,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stoppingDistance: 15
-  hitPoints: 3
+--- !u!114 &124793492667379672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3439357468677119390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff34fd001afe7c4ca29e3424598eb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+--- !u!136 &5371646035256371106
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3439357468677119390}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.55
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4067671811751115666
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +120,7 @@ GameObject:
   - component: {fileID: 131098896525487358}
   m_Layer: 0
   m_Name: EnemyAim
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +204,7 @@ GameObject:
   - component: {fileID: 1063402242735241458}
   m_Layer: 0
   m_Name: EnemyBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,3 +289,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalAngle: 0
   verticalAngle: 0
+  bullet: {fileID: 605254340737493363, guid: 37301f88ad6ec884399551add10bef97, type: 3}
+  bulletDiv: 15

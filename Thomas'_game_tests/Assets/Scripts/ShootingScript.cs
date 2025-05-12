@@ -15,6 +15,7 @@ public class ShootingScript : MonoBehaviour
     private Quaternion currentRotation;
     private GameObject aimPoint;
     private Vector3 currentEulerAngles;
+    private GameObject lastBullet;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,10 @@ public class ShootingScript : MonoBehaviour
             float randZ = Random.Range(-bulletDiv, bulletDiv);
             currentEulerAngles = new Vector3(randX, randY, randZ) + aimPoint.transform.rotation.eulerAngles;
             currentRotation.eulerAngles = currentEulerAngles;
-            Instantiate(proj, this.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.position, currentRotation);
+            lastBullet = Instantiate(proj, this.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.position, currentRotation);
+            lastBullet.GetComponent<BulletScript>().moveSpeed = 150;
+            lastBullet.GetComponent<BulletScript>().damage = 1;
+            lastBullet.GetComponent<BulletScript>().ignore = "Player";
         }
     }
 }
