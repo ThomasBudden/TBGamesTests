@@ -54,6 +54,8 @@ public class HitScanShootingScript : MonoBehaviour
                 {   
                     string damageNumber = damage.ToString();
                     hit.collider.gameObject.GetComponent<TargetCubeScript>().damageTxt.text = "Damage is " + damageNumber;
+                    hit.collider.gameObject.GetComponent<TargetCubeScript>().dpsList.Add(damage);
+                    hit.collider.gameObject.GetComponent<TargetCubeScript>().dpsTime.Add(Time.time);
                 }
                 lastLine = Instantiate(lineTracer, muzzle.transform.position, Quaternion.identity);
                 lineRenderer = lastLine.GetComponent<LineRenderer>();
@@ -82,8 +84,8 @@ public class HitScanShootingScript : MonoBehaviour
             ammoCount -= 1;
             float recoilRandVert = Random.Range(0f, 1f);
             float recoilRandHori = Random.Range(-0.5f, 0.5f);
-            aimPoint.transform.RotateAround(playerCam.transform.position, Vector3.left, (recoilRandVert * recoilMult));
-            aimPoint.transform.RotateAround(playerCam.transform.position, Vector3.up, (recoilRandHori * recoilMult));
+            playerCam.GetComponent<TurretCameraScript>().cameraVerticalRotation -= recoilRandVert * recoilMult; 
+            this.transform.localEulerAngles = this.transform.localEulerAngles + new Vector3(0, (recoilRandHori * recoilMult), 0);
             shotTime = Time.time;
         }
         if ((Input.GetKeyDown(KeyCode.R) && ammoCount != maxAmmo) || Input.GetMouseButton(0) && ammoCount == 0)
@@ -113,14 +115,6 @@ public class HitScanShootingScript : MonoBehaviour
                 timeList.Remove(timeList[i]);
             }
         }
-        float recoilDis = Vector3.Distance(aimPoint.transform.position, aimPointOrigin.transform.position);
-        float recoilAng = Vector3.Angle(aimPoint.transform.eulerAngles, aimPointOrigin.transform.eulerAngles);
-        aimPoint.transform.position = Vector3.Lerp(aimPoint.transform.position, aimPointOrigin.transform.position, 1 * Time.deltaTime);
-        float x = Mathf.LerpAngle(aimPoint.transform.eulerAngles.x, aimPointOrigin.transform.eulerAngles.x, 1 * Time.deltaTime);
-        float y = Mathf.LerpAngle(aimPoint.transform.eulerAngles.y, aimPointOrigin.transform.eulerAngles.y, 1 * Time.deltaTime);
-        float z = Mathf.LerpAngle(aimPoint.transform.eulerAngles.z, aimPointOrigin.transform.eulerAngles.z, 1 * Time.deltaTime);
-        Vector3 targetAngle = new Vector3(x, y, z);
-        aimPoint.transform.eulerAngles = targetAngle;
         weapon.transform.rotation = aimPoint.transform.rotation;
     }
 }

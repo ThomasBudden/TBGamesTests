@@ -471,7 +471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageTxt: {fileID: 558761175}
   dpsTxt: {fileID: 1637673153}
-  dps: []
+  dpsList: []
+  dpsTime: []
   speed: 1
 --- !u!65 &265638381
 BoxCollider:
@@ -714,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2025642331}
   mouseSensitivity: 2
+  cameraVerticalRotation: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,6 +1696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 138630004}
   mouseSensitivity: 2
+  cameraVerticalRotation: 0
 --- !u!114 &1460063218
 MonoBehaviour:
   m_ObjectHideFlags: 0
