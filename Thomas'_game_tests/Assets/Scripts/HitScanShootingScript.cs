@@ -4,17 +4,19 @@ using UnityEngine;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class HitScanShootingScript : MonoBehaviour
 {
     public GameObject aimPoint;
-    public GameObject aimPointOrigin;
     public GameObject playerCam;
     public GameObject weapon;
     public TMP_Text ammoCountTxt;
+    public GameObject[] crosshair = new GameObject[4];
     public float shotTime;
     public float shotSpeed;
-    public float bulletDiv;
+    public float accuracy;
+    private float bulletDiv;
     private Quaternion currentRotation;
     private Vector3 currentEulerAngles;
     public float damage;
@@ -39,13 +41,19 @@ public class HitScanShootingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (accuracy != 0)
+        {
+            bulletDiv = (1/(accuracy * 40));
+        }
+        else if (accuracy <= 0)
+        {
+            bulletDiv = 0;
+        }
         if (Input.GetMouseButton(0) && shotTime + shotSpeed < Time.time && ammoCount > 0 && reloading == false)
         {
-            float randX = Random.Range(-bulletDiv, bulletDiv);
-            float randY = Random.Range(-bulletDiv, bulletDiv);
-            float randZ = Random.Range(-bulletDiv, bulletDiv);
-            currentEulerAngles = new Vector3(randX, randY, randZ) + aimPoint.transform.forward;
-            currentRotation.eulerAngles = currentEulerAngles;
+            float bulletRandVert = Random.Range(-bulletDiv, bulletDiv);
+            float bulletRandHori = Random.Range(-bulletDiv, bulletDiv);
+            currentEulerAngles = aimPoint.transform.forward + new Vector3(bulletRandHori * aimPoint.transform.forward.z,bulletRandVert, bulletRandHori * aimPoint.transform.forward.x);
             RaycastHit hit;
             if (Physics.Raycast(aimPoint.transform.position, currentEulerAngles, out hit, 100))
             {
@@ -82,10 +90,9 @@ public class HitScanShootingScript : MonoBehaviour
                 lineList.Add(lastLine);
             }
             ammoCount -= 1;
-            float recoilRandVert = Random.Range(0f, 1f);
-            float recoilRandHori = Random.Range(-0.5f, 0.5f);
-            playerCam.GetComponent<TurretCameraScript>().cameraVerticalRotation -= recoilRandVert * recoilMult; 
-            this.transform.localEulerAngles = this.transform.localEulerAngles + new Vector3(0, (recoilRandHori * recoilMult), 0);
+            /*float recoilRandHori = Random.Range(-0.5f, 0.5f);
+            playerCam.GetComponent<TurretCameraScript>().cameraVerticalRotation -= 1 * recoilMult; 
+            this.transform.localEulerAngles = this.transform.localEulerAngles + new Vector3(0, (recoilRandHori * recoilMult), 0);*/
             shotTime = Time.time;
         }
         if ((Input.GetKeyDown(KeyCode.R) && ammoCount != maxAmmo) || Input.GetMouseButton(0) && ammoCount == 0)
@@ -115,6 +122,24 @@ public class HitScanShootingScript : MonoBehaviour
                 timeList.Remove(timeList[i]);
             }
         }
-        weapon.transform.rotation = aimPoint.transform.rotation;
+        for (int i = 0; i < crosshair.Length; i++)
+        {
+            if (i == 0)
+            {
+                    crosshair[i].gameObject.transform.localPosition = new Vector3(-28 * (bulletDiv/0.025f) , 0, 0);
+            }
+            if (i == 1)
+            {
+                    crosshair[i].gameObject.transform.localPosition = new Vector3(28 * (bulletDiv / 0.025f), 0, 0);
+            }
+            if (i == 2)
+            {
+                    crosshair[i].gameObject.transform.localPosition = new Vector3(0, 28 * (bulletDiv / 0.025f), 0);
+            }
+            if (i == 3)
+            {
+                    crosshair[i].gameObject.transform.localPosition = new Vector3(0, -28 * (bulletDiv / 0.025f), 0);
+            }
+        }
     }
 }

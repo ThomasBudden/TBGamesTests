@@ -31,6 +31,14 @@ public class NewPlayerMove : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            x = 0;
+        }
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
+        {
+            z = 0;
+        }
         Vector3 move = transform.right * x + transform.forward * z;
         move = Vector3.ClampMagnitude(move, 1f);
         controller.Move(move * speed * Time.deltaTime);
