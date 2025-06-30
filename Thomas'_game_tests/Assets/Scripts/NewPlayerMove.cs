@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewPlayerMove : MonoBehaviour
 {
     public CharacterController controller; //This allows me to control the character controller component
-    public float speed = 12f;
+    public float speed;
     public float gravity = -9.81f;
     Vector3 velocity;
 

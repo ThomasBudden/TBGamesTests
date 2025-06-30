@@ -288,7 +288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff34fd001afe7c4ca29e3424598eb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 100
+  maxHealth: 100
+  healthSpeed: 1
+  regenAmount: 1
+  lastHitTime: 0
+  regenDelay: 3
 --- !u!114 &138630000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,7 +1788,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1696833115}
         m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
-        m_MethodName: OnCLick0
+        m_MethodName: OnClick0
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1897,7 +1902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &835823524
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2043,7 +2048,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1696833115}
         m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
-        m_MethodName: OnCLick2
+        m_MethodName: OnClick2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2176,7 +2181,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1696833115}
         m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
-        m_MethodName: OnCLick1
+        m_MethodName: OnClick1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3693,7 +3698,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c245129a08b7f7745973ec065e433a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 138629998}
   shopManager: {fileID: 1696833114}
+  applyCard: 0
+  currentCard: 0
 --- !u!1 &1506320550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4431,6 +4439,7 @@ MonoBehaviour:
   player: {fileID: 138629998}
   playerCam: {fileID: 1460063215}
   shopPanel: {fileID: 835823523}
+  statsManager: {fileID: 1497641766}
   shopping: 0
   shopRolled: 0
   shopSlot:
@@ -4447,10 +4456,11 @@ MonoBehaviour:
   - x500% fire speed, +30 mag size, -75% damage, -35% accuracy, -30% reload speed
   - x1000% damage, x500% accuracy, x110% movement speed, -90% fire speed, -5 mag
     size
-  - x350% accuracy, x125% reload speed, -15% movement speed
+  - x750% accuracy, x125% reload speed, -15% movement speed
   - x500% heath, +2 heath recharge speed, -15% reload speed, -20% movement speed
   - 'x120% reload speed, x135% movement speed, -20% accuracy, -30% health '
   slotCard: 000000000000000000000000
+  currentCard: 0
 --- !u!4 &1696833116
 Transform:
   m_ObjectHideFlags: 0
@@ -4501,10 +4511,10 @@ RectTransform:
   - {fileID: 922518036}
   m_Father: {fileID: 1218067614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 720, y: -300}
+  m_SizeDelta: {x: 400, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791504500
 MonoBehaviour:
@@ -4617,10 +4627,10 @@ RectTransform:
   - {fileID: 840365497}
   m_Father: {fileID: 1218067614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1240, y: -300}
+  m_SizeDelta: {x: 400, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1924558695
 GameObject:
@@ -4736,10 +4746,10 @@ RectTransform:
   - {fileID: 778005751}
   m_Father: {fileID: 1218067614}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200, y: -300}
+  m_SizeDelta: {x: 400, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1940887396
 MonoBehaviour:

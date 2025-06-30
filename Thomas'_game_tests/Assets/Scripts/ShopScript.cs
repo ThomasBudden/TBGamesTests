@@ -9,6 +9,7 @@ public class ShopScript : MonoBehaviour
     public GameObject playerCam;
     private GameObject currentChest;
     public GameObject shopPanel;
+    public GameObject statsManager;
     public bool shopping;
     public bool shopRolled;
     public GameObject[] shopSlot = new GameObject[3]; //child 0 is name, child 1 is stats
@@ -75,19 +76,22 @@ public class ShopScript : MonoBehaviour
             Debug.Log("No shop");
         }
     }
-    public void OnCLick0()
+    public void OnClick0()
     {
         currentCard = slotCard[0];
+        statsManager.GetComponent<StatsManagerScript>().applyCard = true;
         ShopExit();
     }
-    public void OnCLick1()
+    public void OnClick1()
     {
         currentCard = slotCard[1];
+        statsManager.GetComponent<StatsManagerScript>().applyCard = true;
         ShopExit();
     }
-    public void OnCLick2()
+    public void OnClick2()
     {
         currentCard = slotCard[2];
+        statsManager.GetComponent<StatsManagerScript>().applyCard = true;
         ShopExit();
     }
 

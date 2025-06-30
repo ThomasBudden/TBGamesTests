@@ -46,8 +46,8 @@ public class AiShootingScript : MonoBehaviour
                 currentRotation.eulerAngles = currentEulerAngles;
                 lastBullet = Instantiate(bullet, this.transform.position, this.transform.rotation);
                 lastBullet.GetComponent<BulletScript>().moveSpeed = 50f;
-                lastBullet.GetComponent<BulletScript>().damage = 1f;
-                lastBullet.GetComponent<BoxCollider>().excludeLayers = 7;
+                lastBullet.GetComponent<BulletScript>().damage = 10f;
+                //lastBullet.GetComponent<BoxCollider>().excludeLayers = 7;
             }
         }
     }

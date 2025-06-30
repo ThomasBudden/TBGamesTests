@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletScript : MonoBehaviour
@@ -26,9 +27,10 @@ public class BulletScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != ignore && other.gameObject.GetComponent<HealthManager>() != null)
+        if (other.gameObject.tag == ("Player"))
         {
-            other.gameObject.GetComponent<HealthManager>().health = other.gameObject.GetComponent<HealthManager>().health - damage;
+            other.gameObject.GetComponent<HealthManager>().health -= damage;
+            other.gameObject.GetComponent<HealthManager>().lastHitTime = Time.time;
             Destroy(this.gameObject);
         }
         else if (other.gameObject.tag != ignore)
