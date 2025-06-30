@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TargetCubeScript : MonoBehaviour
 {
-    public TMP_Text damageTxt;
+    public TMP_Text damageTxt; //Text for damage
     public TMP_Text dpsTxt;
     public List<float> dpsList = new List<float>();
     public List<float> dpsTime = new List<float>();

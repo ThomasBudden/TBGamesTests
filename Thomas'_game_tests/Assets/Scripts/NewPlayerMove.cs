@@ -14,8 +14,10 @@ public class NewPlayerMove : MonoBehaviour
     bool isGrounded;
     public LayerMask groundMask;
     public float jumpHeight;
-    
 
+    [SerializeField] private bool nearChest;
+    public bool shopping;
+    public GameObject currentChest;
 
 
     // Start is called before the first frame update
@@ -49,6 +51,21 @@ public class NewPlayerMove : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
-
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == ("Chest"))
+        {
+            nearChest = true;
+            currentChest = other.gameObject;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == ("Chest"))
+        {
+            nearChest = false;
+            currentChest = null;
+        }
     }
 }
