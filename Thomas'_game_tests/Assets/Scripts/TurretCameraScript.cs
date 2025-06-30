@@ -9,7 +9,7 @@ public class TurretCameraScript : MonoBehaviour
     public float mouseSensitivity = 2f;
     public float cameraVerticalRotation = 0f;
 
-    bool lockedCursor = true;
+    public bool lockedCursor = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,14 +37,15 @@ public class TurretCameraScript : MonoBehaviour
         float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         // Rotate the Camera around its local X axis
+        if (lockedCursor == true)
+        {
+            cameraVerticalRotation -= inputY;
+            cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
+            transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
-        cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
-        transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
+            // Rotate the Player Object and the Camera around its Y axis
 
-
-        // Rotate the Player Object and the Camera around its Y axis
-
-        player.Rotate(Vector3.up * inputX);
+            player.Rotate(Vector3.up * inputX);
+        }
     }
 }

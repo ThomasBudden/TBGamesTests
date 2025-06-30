@@ -30,7 +30,7 @@ public class HitScanShootingScript : MonoBehaviour
     private bool reloading = false;
     public float reloadTime;
     private float reloadStart;
-    private bool cantShoot;
+    public bool canShoot;
     public List<float> timeList = new List<float>();
     public List<GameObject> lineList = new List<GameObject>();
     // Start is called before the first frame update
@@ -42,7 +42,6 @@ public class HitScanShootingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cantShoot = this.GetComponent<NewPlayerMove>().shopping;
         if (accuracy != 0)
         {
             bulletDiv = (1/(accuracy * 40));
@@ -51,7 +50,7 @@ public class HitScanShootingScript : MonoBehaviour
         {
             bulletDiv = 0;
         }
-        if (Input.GetMouseButton(0) && shotTime + shotSpeed < Time.time && ammoCount > 0 && reloading == false && cantShoot == false)
+        if (Input.GetMouseButton(0) && shotTime + shotSpeed < Time.time && ammoCount > 0 && reloading == false && canShoot == true)
         {
             float bulletRandVert = Random.Range(-bulletDiv, bulletDiv);
             float bulletRandHori = Random.Range(-bulletDiv, bulletDiv);

@@ -14,6 +14,7 @@ public class NewPlayerMove : MonoBehaviour
     bool isGrounded;
     public LayerMask groundMask;
     public float jumpHeight;
+    public bool canMove;
 
     [SerializeField] private bool nearChest;
     public bool shopping;
@@ -23,7 +24,7 @@ public class NewPlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        canMove = true;
     }
 
     // Update is called once per frame
@@ -45,11 +46,23 @@ public class NewPlayerMove : MonoBehaviour
         move = Vector3.ClampMagnitude(move, 1f);
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        if (canMove == true)
+        {
+            controller.Move(velocity * Time.deltaTime);
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+
+        if (nearChest == true && Input.GetKeyDown(KeyCode.E))
+        {
+            shopping = true;
+        }
+        else if (nearChest == false)
+        {
+            shopping = false;
         }
     }
     private void OnTriggerEnter(Collider other)
